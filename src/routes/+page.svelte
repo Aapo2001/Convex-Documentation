@@ -1,4 +1,6 @@
 <script>
+  import { base } from '$app/paths';
+
   export let data;
 </script>
 
@@ -19,8 +21,8 @@
         <p class="convex-copy">{data.description}</p>
 
         <div class="convex-actions">
-          <a class="convex-button convex-button--solid" href={data.docsHref}>Browse Documentation</a>
-          <a class="convex-button convex-button--ghost" href="/docs/operating-model">Open Operating Model</a>
+          <a class="convex-button convex-button--solid" href={`${base}${data.docsHref}`}>Browse Documentation</a>
+          <a class="convex-button convex-button--ghost" href={`${base}/docs/operating-model`}>Open Operating Model</a>
         </div>
       </div>
 
@@ -77,7 +79,7 @@
 
         <div class="convex-feature-grid">
           {#each data.highlightDocs as doc}
-            <a class="convex-panel convex-feature-card" href={`/docs/${doc.slug}`}>
+            <a class="convex-panel convex-feature-card" href={`${base}/docs/${doc.slug}`}>
               <span class="convex-chip convex-chip--soft">{doc.track}</span>
               <strong>{doc.title}</strong>
               <p>{doc.description}</p>
@@ -108,7 +110,7 @@
 
                 <div class="convex-link-stack">
                   {#each path.docs as doc}
-                    <a href={`/docs/${doc.slug}`}>{doc.title}</a>
+                      <a href={`${base}/docs/${doc.slug}`}>{doc.title}</a>
                   {/each}
                 </div>
               </article>

@@ -1,14 +1,15 @@
 <script>
+  import { base } from '$app/paths';
   import { page } from '$app/state';
 
   const links = [
-    { href: '/', label: 'Hub' },
-    { href: '/docs', label: 'Docs' }
+    { href: base || '/', label: 'Hub' },
+    { href: `${base}/docs`, label: 'Docs' }
   ];
 
   function isActive(pathname, href) {
-    if (href === '/') {
-      return pathname === '/';
+    if (href === (base || '/')) {
+      return pathname === href || pathname === `${href}/`;
     }
 
     return pathname === href || pathname.startsWith(`${href}/`);
@@ -17,8 +18,8 @@
 
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="brand-lockup" href="/" aria-label="Convex documentation home">
-      <img class="brand-mark" src="/brand/quickhabit-logo.svg" alt="" />
+    <a class="brand-lockup" href={base || '/'} aria-label="Convex documentation home">
+      <img class="brand-mark" src={`${base}/brand/quickhabit-logo.svg`} alt="" />
       <span class="brand-copy">
         <span class="eyebrow">QuickHabit</span>
         <span class="brand-title">Convex Documentation</span>
@@ -37,6 +38,6 @@
       {/each}
     </nav>
 
-    <a class="header-cta" href="/docs">Browse Documentation</a>
+    <a class="header-cta" href={`${base}/docs`}>Browse Documentation</a>
   </div>
 </header>

@@ -1,3 +1,4 @@
+import { base } from '$app/paths';
 import { marked } from 'marked';
 
 export type DocHeading = {
@@ -77,14 +78,16 @@ function slugify(value: string) {
 }
 
 function resolveDocLink(slug: string, hash?: string) {
+  const localDocHref = `${base}/docs/${slug}${hash ? `#${hash}` : ''}`;
+
   if (availableDocSlugs.has(slug)) {
-    return `/docs/${slug}${hash ? `#${hash}` : ''}`;
+    return localDocHref;
   }
 
   const sourceLabel = sourceLabelBySlug[slug];
 
   if (!sourceLabel) {
-    return `/docs/${slug}${hash ? `#${hash}` : ''}`;
+    return localDocHref;
   }
 
   return `${githubRepoUrl}/${sourceLabel}${hash ? `#${hash}` : ''}`;

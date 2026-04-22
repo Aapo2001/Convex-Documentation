@@ -1,4 +1,6 @@
 <script>
+  import { base } from '$app/paths';
+
   export let data;
 
   let query = '';
@@ -37,7 +39,7 @@
 
       <div class="convex-docs__controls">
         <div class="convex-actions">
-          <a class="convex-button convex-button--solid" href="/">Back to Hub</a>
+          <a class="convex-button convex-button--solid" href={base || '/'}>Back to Hub</a>
         </div>
 
         <label class="convex-search">
@@ -62,7 +64,7 @@
           <span class="convex-label">Best first reads</span>
           <div class="convex-link-stack">
             {#each data.hub.highlightDocs as doc}
-              <a href={`/docs/${doc.slug}`}>{doc.title}</a>
+              <a href={`${base}/docs/${doc.slug}`}>{doc.title}</a>
             {/each}
           </div>
         </article>
@@ -84,7 +86,7 @@
 
               <div class="convex-doc-group__list">
                 {#each group.docs as doc, index}
-                  <a class="convex-doc-row" href={`/docs/${doc.slug}`}>
+                  <a class="convex-doc-row" href={`${base}/docs/${doc.slug}`}>
                     <span class="convex-doc-row__index">{String(index + 1).padStart(2, '0')}</span>
                     <span>
                       <strong>{doc.title}</strong>

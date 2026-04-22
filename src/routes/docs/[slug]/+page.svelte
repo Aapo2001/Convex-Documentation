@@ -1,4 +1,5 @@
 <script>
+  import { base } from '$app/paths';
   import { browser } from '$app/environment';
   import DocSidebar from '$lib/components/DocSidebar.svelte';
   import DocToc from '$lib/components/DocToc.svelte';
@@ -50,7 +51,7 @@
       </div>
 
       <div class="convex-actions">
-        <a class="convex-button convex-button--solid" href="/docs">Back to Convex Documentation</a>
+        <a class="convex-button convex-button--solid" href={`${base}/docs`}>Back to Convex Documentation</a>
         {#if data.sourceHref}
           <a class="convex-button convex-button--ghost" href={data.sourceHref} target="_blank" rel="noreferrer">
             View Source
@@ -61,7 +62,7 @@
 
     <div class="convex-doc__layout">
       <div class="convex-doc__nav">
-        <DocSidebar groups={data.groups} currentSlug={data.doc.slug} basePath="/docs" />
+        <DocSidebar groups={data.groups} currentSlug={data.doc.slug} basePath={`${base}/docs`} />
       </div>
 
       <article class="convex-panel convex-doc__content">
@@ -71,14 +72,14 @@
 
         <div class="convex-doc__pager">
           {#if data.previousDoc}
-            <a class="convex-panel convex-doc__pager-card" href={`/docs/${data.previousDoc.slug}`}>
+            <a class="convex-panel convex-doc__pager-card" href={`${base}/docs/${data.previousDoc.slug}`}>
               <span class="convex-label">Previous</span>
               <strong>{data.previousDoc.title}</strong>
             </a>
           {/if}
 
           {#if data.nextDoc}
-            <a class="convex-panel convex-doc__pager-card" href={`/docs/${data.nextDoc.slug}`}>
+            <a class="convex-panel convex-doc__pager-card" href={`${base}/docs/${data.nextDoc.slug}`}>
               <span class="convex-label">Next</span>
               <strong>{data.nextDoc.title}</strong>
             </a>
@@ -94,7 +95,7 @@
 
             <div class="convex-feature-grid">
               {#each data.relatedDocs as doc}
-                <a class="convex-panel convex-feature-card" href={`/docs/${doc.slug}`}>
+                <a class="convex-panel convex-feature-card" href={`${base}/docs/${doc.slug}`}>
                   <span class="convex-chip convex-chip--soft">{doc.track}</span>
                   <strong>{doc.title}</strong>
                   <p>{doc.description}</p>
